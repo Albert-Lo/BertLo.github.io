@@ -9,6 +9,7 @@ import Svg exposing (svg, line, linearGradient, stop)
 import Svg.Attributes exposing (x1, x2, y1, y2, stroke, height, width, offset, id, style)
 import List
 import Window
+import Mouse exposing (Position)
 import Task exposing (perform)
 import Random exposing (float, int, map3)
 
@@ -35,6 +36,8 @@ type alias Model = {
   meteors: List Meteor
   , windowWidth: Int
   , windowHeight: Int
+  , mouseX: Int
+  , mouseY: Int
 }
 
 init : (Model, Cmd Msg)
@@ -43,6 +46,8 @@ init =
   meteors = []
   , windowWidth = 0
   , windowHeight = 0
+  , mouseX = 0
+  , mouseY = 0
   }
   , perform Resize Resize Window.size)
 
@@ -52,6 +57,7 @@ type Msg
   | Prob Float
   | Add MeteorInit
   | Resize Window.Size
+  | Move Position
 
 lineOffset meteor height =
   height - meteor.y - meteor.x
@@ -105,12 +111,18 @@ update msg model =
           | windowWidth = size.width
           , windowHeight = size.height
         }, Cmd.none)
+      Move pos ->
+        ({model
+          | mouseX = pos.x
+          , mouseY = pos.y
+        }, Cmd.none)
+
 
 -- SUBSCRIPTIONS
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  Window.resizes Resize
+  Sub.batch [Window.resizes Resize, Mouse.moves Move]
 
 -- VIEW
 
@@ -124,11 +136,24 @@ stopPoint current end =
   else
     toString tailLength
 
+perspectiveOffset : Int -> Int -> Int -> Int -> String
+perspectiveOffset mouseX mouseY windowWidth windowHeight =
+  let
+    maxOffset = 40
+  in
+    "top:"
+    ++ (toString (((((toFloat windowHeight) / 2.0) - (toFloat mouseY)) / (toFloat windowHeight)) * maxOffset))
+    ++ "px;"
+    ++ "left:"
+    ++ (toString (((((toFloat windowWidth) / 2.0) - (toFloat mouseX)) / (toFloat windowWidth)) * maxOffset))
+    ++ "px;"
+
+
 
 view : Model -> Html.Html Msg
 view model =
   div [class "Elm-Home", onWheel Wheel] [
-    svg [width "100%", height "100%"] (
+    svg [width "100%", height "100%", style ("position: absolute;" ++ (perspectiveOffset model.mouseX model.mouseY model.windowWidth model.windowHeight))] (
       (List.indexedMap (\i m -> linearGradient [
         id ("gradient" ++ (toString i)), x1 "0%", y1 "0%", x2 "100%", y2 "0%"
       ] [
