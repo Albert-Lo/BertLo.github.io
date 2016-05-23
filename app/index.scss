@@ -1,0 +1,75 @@
+@import url('http://fonts.googleapis.com/css?family=Roboto:100,300');
+
+$breakpoint: 768px;
+
+html, body, #app {
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  overflow: hidden;
+  background: #191920;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.Elm-Home {
+  width: 100%;
+  height: 100%;
+  
+  .text {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    .name {
+      font-size: 100px;
+      font-weight: 100;
+      @media only screen and (max-width: $breakpoint) {
+        text-align: right;
+        font-size: 60px;
+      }
+    }
+
+    .primary, .secondary, .links {
+      text-align: right;
+      a {
+        color: white;
+        cursor: default;
+        text-decoration: none;
+        font-weight: 300;
+      }
+    }
+
+    .primary {
+      font-size: 30px;
+      @media only screen and (max-width: $breakpoint) {
+        font-size: 20px;
+      }
+    }
+
+    .secondary {
+      font-size: 15px;
+      @media only screen and (max-width: $breakpoint) {
+        font-size: 12px;
+      }
+    }
+
+    .links {
+      font-size: 22px;
+      a {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
+      @media only screen and (max-width: $breakpoint) {
+        font-size: 15px;
+      }
+    }
+
+    @media only screen and (max-width: $breakpoint) {
+      top: 10%;
+      right: 2%;
+    }
+  }
+}
