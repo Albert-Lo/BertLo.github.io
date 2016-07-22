@@ -173,7 +173,7 @@ view model =
           , a [href "https://xkcd.com/1678/", target "_blank"] [text "generalist"]
         ]
         , div [class "secondary"] [
-          a [href "https://xkcd.com/1537/", target "_blank"] [text "js ethuiast"]
+          a [href "https://xkcd.com/1537/", target "_blank"] [text "js enthusiast"]
           , text " / "
           , a [href "https://xkcd.com/1270/", target "_blank"] [text "lambda fanatic"]
         ]
