@@ -40,6 +40,8 @@ type alias Model =
     , windowHeight : Int
     , mouseX : Int
     , mouseY : Int
+    , originX : Int
+    , originY : Int
     , holding : Bool
     }
 
@@ -51,6 +53,8 @@ init =
       , windowHeight = 0
       , mouseX = 0
       , mouseY = 0
+      , originX = 0
+      , originY = 0
       , holding = False
       }
     , perform Resize Window.size
@@ -159,8 +163,8 @@ update msg model =
 
             Pan coordinates ->
                 ( { model
-                    | mouseX = round coordinates.clientX
-                    , mouseY = round coordinates.clientY
+                    | mouseX = model.originX - (round coordinates.clientX)
+                    , mouseY = model.originY - (round coordinates.clientY)
                   }
                 , Cmd.none
                 )
@@ -168,6 +172,8 @@ update msg model =
             Hold coordinates ->
                 ( { model
                     | holding = True
+                    , originX = round coordinates.clientX
+                    , originY = round coordinates.clientY
                   }
                 , Cmd.none
                 )
