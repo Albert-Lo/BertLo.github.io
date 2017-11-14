@@ -1,8 +1,8 @@
 module Home exposing (main)
 
 import Touch
+import AnimationFrame
 import SingleTouch
-import MultiTouch
 import Json.Decode as Json
 import Html exposing (Html, div, text, a, hr)
 import Html.Attributes exposing (class, href, target)
@@ -10,9 +10,8 @@ import Html.Events exposing (on)
 import Svg exposing (svg, line, linearGradient, stop)
 import Svg.Attributes exposing (x1, x2, y1, y2, stroke, height, width, offset, id, style)
 import List
-import Dict
 import Window
-import Maybe exposing (withDefault)
+import Time exposing (Time)
 import Mouse exposing (Position)
 import Task exposing (perform)
 import Random exposing (float, int, map4)
@@ -41,6 +40,7 @@ type alias Model =
     , windowHeight : Int
     , mouseX : Int
     , mouseY : Int
+    , holding : Bool
     }
 
 
@@ -51,6 +51,7 @@ init =
       , windowHeight = 0
       , mouseX = 0
       , mouseY = 0
+      , holding = False
       }
     , perform Resize Window.size
     )
@@ -66,8 +67,10 @@ type Msg
     | Add Meteor
     | Resize Window.Size
     | Move Position
-    | Drag Touch.Coordinates
-    | Pan Touch.Event
+    | Pan Touch.Coordinates
+    | Hold Touch.Coordinates
+    | Lift Touch.Coordinates
+    | Tick Time
 
 
 lineOffset meteor height =
@@ -122,9 +125,6 @@ update msg model =
             Wheel ->
                 shower
 
-            Drag coordinates ->
-                shower
-
             Prob p ->
                 if p < (((toFloat (maxMeteors - (List.length model.meteors))) / (toFloat maxMeteors)) ^ 2) then
                     ( model, newMeteor model.windowWidth model.windowHeight )
@@ -157,22 +157,33 @@ update msg model =
                 , Cmd.none
                 )
 
-            Pan event ->
-                let
-                    coorDefault =
-                        { clientX = 0
-                        , clientY = 0
-                        }
+            Pan coordinates ->
+                ( { model
+                    | mouseX = round coordinates.clientX
+                    , mouseY = round coordinates.clientY
+                  }
+                , Cmd.none
+                )
 
-                    coordinates =
-                        withDefault coorDefault (List.head (Dict.values event.changedTouches))
-                in
-                    ( { model
-                        | mouseX = round coordinates.clientX
-                        , mouseY = round coordinates.clientY
-                      }
-                    , Cmd.none
-                    )
+            Hold coordinates ->
+                ( { model
+                    | holding = True
+                  }
+                , Cmd.none
+                )
+
+            Lift coordinates ->
+                ( { model
+                    | holding = False
+                  }
+                , Cmd.none
+                )
+
+            Tick time ->
+                if model.holding then
+                    shower
+                else
+                    ( model, Cmd.none )
 
 
 
@@ -181,7 +192,7 @@ update msg model =
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch [ Window.resizes Resize, Mouse.moves Move ]
+    Sub.batch [ Window.resizes Resize, Mouse.moves Move, AnimationFrame.times Tick ]
 
 
 
@@ -223,7 +234,7 @@ view model =
         yOffset =
             perspectiveOffset model.mouseY model.windowHeight
     in
-        div [ class "Elm-Home", onWheel Wheel, SingleTouch.onMove Drag, MultiTouch.onMove Pan ]
+        div [ class "Elm-Home", onWheel Wheel, SingleTouch.onStart Hold, SingleTouch.onEnd Lift, SingleTouch.onMove Pan ]
             [ svg [ width "100%", height "100%" ]
                 ((List.indexedMap
                     (\i m ->
