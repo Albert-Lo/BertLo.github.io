@@ -15,6 +15,7 @@ import Time exposing (Time)
 import Mouse exposing (Position)
 import Task exposing (perform)
 import Random exposing (float, int, map4)
+import Navigation exposing (load)
 
 
 main =
@@ -75,6 +76,9 @@ type Msg
     | Hold Touch.Coordinates
     | Lift Touch.Coordinates
     | Tick Time
+    | Github Touch.Coordinates
+    | Linkedin Touch.Coordinates
+    | Resume Touch.Coordinates
 
 
 lineOffset meteor height =
@@ -108,6 +112,18 @@ maxLength =
 
 maxDepth =
     4
+
+
+github =
+    "https://github.com/BertLo"
+
+
+linkedin =
+    "https://www.linkedin.com/in/alberthtlo"
+
+
+resume =
+    "/resume"
 
 
 newMeteor : Int -> Int -> Cmd Msg
@@ -190,6 +206,15 @@ update msg model =
                     shower
                 else
                     ( model, Cmd.none )
+
+            Github coordinates ->
+                ( model, load github )
+
+            Linkedin coordinates ->
+                ( model, load linkedin )
+
+            Resume coordinates ->
+                ( model, load resume )
 
 
 
@@ -287,11 +312,11 @@ view model =
                     ]
                 , hr [] []
                 , div [ class "links" ]
-                    [ a [ href "https://github.com/BertLo", target "_blank" ] [ text "github" ]
+                    [ a [ href github, target "_blank", SingleTouch.onStart Github ] [ text "github" ]
                     , text " / "
-                    , a [ href "https://www.linkedin.com/in/alberthtlo", target "_blank" ] [ text "linkedin" ]
+                    , a [ href linkedin, target "_blank", SingleTouch.onStart Linkedin ] [ text "linkedin" ]
                     , text " / "
-                    , a [ href "/resume", target "_blank" ] [ text "resume" ]
+                    , a [ href resume, target "_blank", SingleTouch.onStart Resume ] [ text "resume" ]
                     ]
                 ]
             ]
