@@ -45,7 +45,7 @@
         vertical-align: top;
         margin-bottom: 8px;
       }
-      
+
       .obfus {
         direction: rtl;
         unicode-bidi: bidi-override;
@@ -123,6 +123,7 @@
       .project .description {
         color: #8e8e8e;
         font-size: 14px;
+        margin-bottom: 4px;
       }
 
       .project .details {
@@ -133,6 +134,7 @@
       .project .details .item {
         font-size: 16px;
         text-indent: -10px;
+        margin-bottom: 2px;
       }
 
       .project .details .item:before {
@@ -153,7 +155,7 @@
           width: 100%;
           display: block;
         }
-        
+
         section > .content {
           border-left: none;
           padding-left: 0;
@@ -188,81 +190,244 @@
         <div class="content">
           <div class="experience">
             <div class="position">
+              Head of Engineering
+            </div>
+            <div class="company">
+              Scalable Labs (Subsidary of Scalable Inc.) - <span class="area">Taipei, Taiwan</span>
+            </div>
+            <div class="period">
+              April 2019 - Present
+            </div>
+            <ul>
+              <li class="project">
+                <div class="title">
+                  Labs initiatives
+                </div>
+                <div class="description">
+                  https://labs.scalablepress.com/
+                </div>
+                <div class="description">
+                  An R&D office that focuses on building new products in a fast-paced environment to test out different eCommerce ideas
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Relocated to Taipei to help Scalable Inc to set up an engineering team in Taipei while also working as a Software Architect remotely for the San Francisco office
+                  </div>
+                  <div class="item">
+                    Oversees the technology vision & strategy for products developed in Scalable Labs
+                  </div>
+                  <div class="item">
+                    Manage engineering resources & hiring process for the Taipei office
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="experience">
+            <div class="position">
+              Software Architect
+            </div>
+            <div class="company">
+              Scalable Inc. (previously Scalable Press) - <span class="area">San Francisco, CA | Remote</span>
+            </div>
+            <div class="period">
+              Jan 2019 - Present
+            </div>
+            <ul>
+              <li class="project">
+                <div class="title">
+                  Chip
+                </div>
+                <div class="description">
+                  - https://chipchip.com
+                </div>
+                <div class="description">
+                  Previously TeeChip, rebranded to Chip as we added dropshipping features to our existing print-on-demand eCommerce platform
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Took a break from architecture design and worked on product development again for a quarter as adding dropshipping features was the most important initiative at the moment
+                  </div>
+                  <div class="item">
+                    Led an engineering team of 5 to deliver a fully-featured dropship eCommerce platform in 2 months
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="title">
+                  Codebase Revamp
+                </div>
+                <div class="description">
+                  Various improvements to the codebase of different products
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Evangelized the adoption of monorepo using lerna
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of GraphQL Coddegen to reduce time spent on writing Typescript interfaces
+                  </div>
+                  <div class="item">
+                    Improve codebase's testability by adopting Dependency Injection, and enforce
+                  </div>
+                  <div class="item">
+                    Added git hooks and Bitbucket pipelines to lint & test our repositories
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="title">
+                  Cloud Architecture Revamp
+                </div>
+                <div class="description">
+                  Various improvements to the old cloud architecture
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Split up our monolithic VPC into smaller VPCs for each product
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of Docker & AWS Fargate for application deployment
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of Terraform for infrastructure deployment and maintenance
+                  </div>
+                  <div class="item">
+                    Designed and implemented a multi QA environments setup with Terraform and AWS Fargate, allowing developers/QA to spin up an isolated QA environment for any git branches
+                  </div>
+                  <div class="item">
+                    Implemented a canary deployment process
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="title">
+                  Change Stream & Job Queue
+                </div>
+                <div class="description">
+                  A new job queue system for inter-service communication to replace most of the HTTP calls between services
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Designed a more robust job queue system using RabbitMQ
+                  </div>
+                  <div class="item">
+                    Designed a reactive architecture with Kafka listening to MongoDBs' changes, then dispatch the change events to downstream consumers with RabbitMQ
+                  </div>
+                  <div class="item">
+                    Designed an RPC standards using RabbitMQ for synchronous communication between services
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="experience">
+
+
+            <div class="position">
               Software Engineer
             </div>
             <div class="company">
-              Scalable Press - <span class="area">San Francisco, CA</span>
+              Scalable Inc. (previously Scalable Press) - <span class="area">San Francisco, CA</span>
             </div>
             <div class="period">
-              April 2015 - Present
+              April 2015 - Dec 2018
             </div>
             <ul>
+              <li class="project">
+                <div class="title">
+                  Inkpop (Discontinued)
+                </div>
+                <div class="description">
+                  - https://inkpop.com
+                </div>
+                <div class="description">
+                  A one-stop shop for all product customizations needs
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Led a team of 5 to build a fully-featured site in 2 months.
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of Typescript, GraphQL & Apollo Federation</div>
+                  <div class="item">
+                    Designed a robust microservice architecture for the product
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of design system for our frontend developments.
+                  </div>
+                  <div class="item">
+                    Worked with product designers to create the company's first-ever design system for Inkpop, and oversaw the development of other design systems for other company's products
+                  </div>
+                  <div class="item">
+                    Wrote a guideline for designing microservice architectures for the company, standardizing the general architecture of all products in the company
+                  </div>
+                </div>
+              </li>
+              <li class="project">
+                <div class="title">
+                  TeeChip (Rebranded as Chip)
+                </div>
+                <div class="description">
+                  - https://teechip.com/, https://chipchip.com/
+                </div>
+                <div class="description">
+                  An eCommerce platform enabling sellers to sell print on demand products from anywhere without worrying about customer service & logistics.
+                </div>
+                <div class="details">
+                  <div class="item">
+                    Tech lead of the product, team size grew from 3 people to at max 30
+                  </div>
+                  <div class="item">
+                    Discarded the old codebase and rebuilt the whole platform.
+                  </div>
+                  <div class="item">
+                    Evangelized the adoption of ReacJS and Webpack
+                  </div>
+                  <div class="item">
+                    Oversees the architecture of the product
+                  </div>
+                </div>
+              </li>
               <li class="project">
                 <div class="title">
                   Mockup Generator
                 </div>
                 <div class="description">
-                  Service that allows user to generate compelling and realistc product preview with their own artwork and Scalable Press's product images.
+                  Service that allows users to generate realistic Scalable Press product previews with their own artwork.
                 </div>
                 <div class="details">
                   <div class="item">
-                    Designed and implemented scalable web API for the service
+                    Designed and implemented an on demand mockup generation process that only generates mockup image when the image URL is visited.
                   </div>
                   <div class="item">
-                    Designed and implemented image processing application in C++ using OpenCV
+                    Designed and implemented image processing consumers in C++ using OpenCV.
                   </div>
                   <div class="item">
-                    Evaluated space-time tradeoff and optimize image processing speed using loop transformations
-                  </div>
-                  <div class="item">
-                    Implemented interface between C++ image processing application and Node.js server
+                    Designed and implemented a simple job queue system to process mockup generation requests using RabbitMQ.
                   </div>
                 </div>
               </li>
               <li class="project">
                 <div class="title">
-                  Licensing Platform
-                </div>
-                <div class="description">
-                  A highly customizable and easily branded eCommerce platform for licensed organizations and a wholesale platform for licensed product reseller.
-                </div>
-                <div class="details">
-                  <div class="item">
-                    Designed and implemented restful API used by both services.
-                  </div>
-                  <div class="item">
-                    Designed user interface for both services.
-                  </div>
-                  <div class="item">
-                    Developed one-page applications as the frontends of both services using React.js and Redux and self-themed Semantic UI.
-                  </div>
-                  <div class="item">
-                    Developed server-side renderable data syncing library for React.js and Redux. 
-                  </div>
-                  <div class="item">
-                    Designed and implemented product import pipeline.
-                  </div>
-                </div>
-              </li>
-              <li class="project">
-                <div class="title">
+                  Scalable Press Shopify App (Rebranded as Fuel)
                   eCommerce Platform Integration
                 </div>
                 <div class="description">
-                  Integration to help user using Shopify/WooCommerce to fulfill their orders with Scalable Press.
+                  https://www.getfuelpod.com/
+                </div>
+                <div class="description">
+                  App to help users using Shopify/WooCommerce to fulfill their orders with Scalable Press.
                 </div>
                 <div class="details">
                   <div class="item">
-                    Refactored existing Shopify Integration codebase and add integration to WooCommerce
+                    Refactored existing Shopify Integration codebase and added an integration for WooCommerce
                   </div>
                   <div class="item">
-                    Designed and implemented order batching fulfill system to allow user to decide whether to fulfill economically or timely
+                    Designed and implemented order batching fulfillment system to allow users to decide whether to fulfill economically or timely
                   </div>
                   <div class="item">
-                    Designed and implemented webhook system for automatic order syncing from user's eCommerce store and Scalable Press system
-                  </div>
-                  <div class="item">
-                    Designed order manager for the integration.
+                    Designed and implemented a webhook system for automatic order syncing from user's eCommerce store and Scalable Press system
                   </div>
                 </div>
               </li>
@@ -271,23 +436,17 @@
                   Internal/Warehouse Softwares
                 </div>
                 <div class="description">
-                  Softwares to improve workflow of production other departments.
+                  Multiple web/native applications to improve the workflow of other departments, including warehouse.
                 </div>
                 <div class="details">
                   <div class="item">
-                    Angular service to read USB barcode scanner's signals
+                    Built an Angular service to read USB barcode scanner's signals
                   </div>
                   <div class="item">
-                    Window desktop application helps to monitor and install latest update of warehouse softwares
+                    Built a Windows desktop application to help keep all desktop warehouse softwares updated on each machine.
                   </div>
                   <div class="item">
-                    Order health monitor to analyze orders' production status and provide solutions to orders in bad state.
-                  </div>
-                  <div class="item">
-                    Libaray to transform JSON/MongoDB data to spreadsheet as a reporting tool
-                  </div>
-                  <div class="item">
-                    Claim system for cutsomer to file claims and customer service representive to resolve them.
+                    Built a claim system for cutsomers to file claims and CS representives to resolve them.
                   </div>
                 </div>
               </li>
@@ -309,7 +468,7 @@
                   Plenry Web Application
                 </div>
                 <div class="description">
-                  Social networking platform for people to host and join offline activities and meetings.
+                  A social networking platform for people to find/host home dinners.
                 </div>
                 <div class="details">
                   <div class="item">
@@ -319,7 +478,7 @@
                     Built a RESTful API server using Node and Express.
                   </div>
                   <div class="item">
-                    Migrated technology stack from Express + Backbone to Meteor
+                    Migrated stack from Express + Backbone to Meteor for easier to maintainence for a small development team.
                   </div>
                 </div>
               </li>
@@ -349,41 +508,24 @@
         </div>
         <div class="content">
           <div class="half">
-            <strong>Framework, Library and Database</strong>
+            <strong>Frameworks, Tools, Libraries and Databases</strong>
             <ul>
-              <li>React.js</li>
-              <li>Redux</li>
-              <li>Angular</li>
+              <li>React.js, Angular</li>
+              <li>Redux, GraphQL</li>
+              <li>TailwindCSS</li>
+              <li>Webpack</li>
               <li>MongoDB</li>
-              <li>Postgresql</li>
-              <li>MySQL</li>
-              <li>Express</li>
-              <li>Meteor</li>
-              <li>Phoenix</li>
-              <li>ImageMagick</li>
-              <li>OpenCV</li>
+              <li>Express, Apollo, NextJS, Meteor</li>
+              <li>RabbitMQ</li>
+              <li>ImageMagick, OpenCV</li>
             </ul>
           </div>
           <div class="half">
-            <strong>Language and Runtime</strong>
+            <strong>Languages and Runtimes</strong>
             <ul>
-              <li>Node.js</li>
-              <li>Javascript, Coffeescript</li>
+              <li>Node.js, Typescript, Javascript, Coffeescript</li>
               <li>Elm</li>
-              <li>Erlang, Elixir</li>
-              <li>Haskell</li>
               <li>C, C++</li>
-              <li>Python</li>
-              <li>Ruby</li>
-              <li>Java</li>
-              <li>Objective C</li>
-            </ul>
-          </div>
-          <div class="half">
-            <strong>Tool and Service</strong>
-            <ul>
-              <li>Git</li>
-              <li>AWS</li>
             </ul>
           </div>
         </div>
